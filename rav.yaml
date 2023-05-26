@@ -1,0 +1,19 @@
+scripts:
+  installs:
+    - pip-compile src/requirements/requirements.in -o src/requirements.txt
+    - pip install -r src/requirements.txt
+  server:
+    - cd src
+    - py manage.py runserver
+  migrate:
+    - cd src
+    - py manage.py migrate 
+    - py manage.py makemigrations
+  static:
+    - cd src
+    - py manage.py collectstatic
+  server:
+    - cd src
+    - py manage.py runserver
+  watch:
+    - npx tailwindcss -i ./src/core/static/tailwind/input.css -o ./src/core/static/tailwind/output.css --watch

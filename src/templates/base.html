@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Register{% endblock title %}</title>
+    {% include "./base-static/style.html" %}
+</head>
+<body>
+    {% include "base/navbar.html" %}
+    <div>
+        {% block content %}
+
+        {% endblock content %}
+    </div>
+    {% include './base-static/scripts.html' %}
+</body>
+</html>

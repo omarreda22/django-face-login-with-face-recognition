@@ -1,0 +1,12 @@
+Django<4.2
+pillow
+cmake
+dlib
+face-recognition
+opencv-python
+opencv-contrib-python
+celery
+redis
+twilio
+dj-database-url
+python-decouple

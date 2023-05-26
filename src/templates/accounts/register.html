@@ -1,0 +1,76 @@
+{% extends '../base.html' %}
+{% block title %}Register{% endblock %}
+{% block content %}
+    {% comment %} <form method="POST" action="." enctype="multipart/form-data">
+    {% csrf_token %}
+    {{form.as_p}}
+    <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Register new account</button>
+    </form> {% endcomment %}
+    
+    <section class="bg-white dark:bg-gray-900">
+        <div class="py-8 px-4 mx-auto max-w-2xl lg:py-8">
+    {% if form.errors %}
+        {% for key, value in form.errors.items %}
+            <div id="alert-2" class="flex p-4 mb-4 text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+                <svg aria-hidden="true" class="flex-shrink-0 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
+                <span class="sr-only">Info</span>
+                <div class="ml-3 text-sm font-medium">
+                {{value}}
+                </div>
+                <button type="button" class="ml-auto -mx-1.5 -my-1.5 bg-red-50 text-red-500 rounded-lg focus:ring-2 focus:ring-red-400 p-1.5 hover:bg-red-200 inline-flex h-8 w-8 dark:bg-gray-800 dark:text-red-400 dark:hover:bg-gray-700" data-dismiss-target="#alert-2" aria-label="Close">
+                <span class="sr-only">Close</span>
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                </button>
+            </div>
+        {% endfor %}
+    {% endif %}
+    {% include "components/messages.html" %}
+        
+            <h2 class="mb-10 text-3xl font-bold text-primary-800 dark:text-white ">Create New Account:</h2>
+            <form method="POST" action="." enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="grid gap-4 sm:grid-cols-2 sm:gap-4">
+                    <div class="w-full">
+                        <label for="brand" class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">First Name</label>
+                        {{form.first_name}}
+                    </div>
+                    <div class="w-full">
+                        <label for="brand" class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Last Name</label>
+                        {{form.last_name}}
+                    </div>
+                    <div class="sm:col-span-2">
+                        <label for="name" class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Username</label>
+                        {{form.username}}
+                    </div>
+                    <div class="sm:col-span-2">
+                        <label for="name" class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Email</label>
+                        {{form.email}}
+                    </div>
+                    <div>
+                        <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
+                        {{form.password1}}
+                    </div>
+                    <div>
+                        <label for="confirm-password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Confirm password</label>
+                        {{form.password2}}
+                    </div>
+                    {% comment %} <div class="sm:col-span-2">
+                        <label for="name" class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">ID Image</label>
+                        {{form.id_image}}
+                    </div> {% endcomment %}
+                    <div class="w-full">
+                        <label for="price" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Phone Number</label>
+                        {{form.phone_number}}
+                    </div>
+                    <div>
+                        <label for="category" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Gender</label>
+                        {{form.gender}}
+                    </div>
+                </div>
+                <div class="w-full text-center">
+                    <button type="submit" class="text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 mt-8 place-content-center w-2/4">Register</button>
+                </div>
+            </form>
+        </div>
+      </section>
+{% endblock %}
