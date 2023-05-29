@@ -1,5 +1,4 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.core.mail import EmailMessage
 from django.contrib.auth import get_user_model
 from django.contrib.auth import login, logout
 from django.contrib import messages
@@ -8,6 +7,7 @@ from core.env import config
 
 from .forms import RegisterForm, UserCreationForm
 from .detection import FaceRecognition
+from .tasks import send_email
 
 User = get_user_model()
 faceRecognition = FaceRecognition()
@@ -25,10 +25,12 @@ def accounts_register(request):
         new_user.save()
         face_id = new_user.id  
         phone_number = new_user.phone_number
-        print(face_id)
+
+        # Face Recognition
         faceRecognition.faceDetect(face_id)
         faceRecognition.trainFace()
         
+        # Send SMS Message
         if phone_number is not None:
             account_sid = config('PHONE_ACCOUNT_SID', default=None)
             auth_token = config('PHONE_AUTH_TOKEN', default=None)
@@ -40,12 +42,12 @@ def accounts_register(request):
                                 to=f'+20{phone_number}'
                             )
         
+        # Send Email
         _title = f"Hello {new_user.username}"
         email = new_user.email
         title = _title
-        subject = "You are can now sign up to our website."
-        send_email = EmailMessage(title, subject, to=[email])
-        send_email.send()    
+
+        send_email.delay(title, email)
 
         return redirect("accounts:login")
 

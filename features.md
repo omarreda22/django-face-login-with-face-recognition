@@ -1,0 +1,6 @@
+- Login with face
+- send sms after register
+- send email after register
+- using celery to send emails
+- tasks with celery schedules
+- custom user model

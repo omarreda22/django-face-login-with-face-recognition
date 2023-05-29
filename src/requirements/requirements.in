@@ -6,6 +6,7 @@ face-recognition
 opencv-python
 opencv-contrib-python
 celery
+gevent
 redis
 twilio
 dj-database-url
